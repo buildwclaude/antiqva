@@ -1,0 +1,15 @@
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  server: { host: true, port: 5173 },
+  build: {
+    target: 'es2020',
+    assetsInlineLimit: 2048,
+    rollupOptions: {
+      output: {
+        // three is the heavy one — let it cache separately from the page code
+        manualChunks: { three: ['three'], anim: ['gsap', 'lenis'] },
+      },
+    },
+  },
+});

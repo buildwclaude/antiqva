@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#044BAE" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <title>ANTIQVA — The Long Afternoon of Marble · Issue XIV</title>
+  <meta name="description" content="ANTIQVA, a European review of art. Issue XIV: six plates, three essays and one column, on the statue as weather." />
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" />
+  <link rel="preload" as="image" href="/statue-cutout.webp" type="image/webp" fetchpriority="high" />
+</head>
+<body>
+  <a class="skip-link" href="#editorial">Skip to the editorial</a>
+
+  <!-- WebGL sky: the page's backdrop for its whole length -->
+  <canvas id="sky" aria-hidden="true"></canvas>
+
+  <!-- print treatments -->
+  <div class="treatment treatment--grain" aria-hidden="true"></div>
+  <div class="treatment treatment--halftone" aria-hidden="true"></div>
+
+  <!-- reading progress -->
+  <div class="rail" aria-hidden="true">
+    <span class="rail__track"></span>
+    <span class="rail__fill"></span>
+    <span class="rail__tick" style="--at: 0.30"></span>
+    <span class="rail__tick" style="--at: 0.55"></span>
+    <span class="rail__tick" style="--at: 0.86"></span>
+  </div>
+
+  <!-- custom cursor -->
+  <div class="cursor" aria-hidden="true">
+    <span class="cursor__ring"><span class="cursor__label"></span></span>
+    <span class="cursor__dot"></span>
+  </div>
+
+  <header class="masthead">
+    <a class="masthead__logo" href="#top"><span>ANTIQVA</span></a>
+    <nav class="masthead__nav" aria-label="Sections">
+      <ul>
+        <li><a href="#editorial" data-anchor>Editorial</a></li>
+        <li><a href="#plates" data-anchor>Plates</a></li>
+        <li><a href="#contents" data-anchor>Contents</a></li>
+        <li><a href="#colophon" data-anchor>Colophon</a></li>
+      </ul>
+    </nav>
+    <p class="masthead__issue">N<sup>o</sup> XIV — Automne MMXXVI</p>
+  </header>
+
+  <main id="top">
+    <!-- ───────────────────────── HERO ───────────────────────── -->
+    <section class="hero" aria-labelledby="hero-title">
+      <figure class="hero__figure" data-statue>
+        <picture>
+          <source type="image/webp" media="(max-width: 640px)" srcset="/statue-cutout-sm.webp" />
+          <source type="image/webp" srcset="/statue-cutout.webp" />
+          <img src="/statue-cutout.png" width="577" height="918" fetchpriority="high" decoding="async"
+               alt="A draped marble figure crowned with laurel stands atop a fluted column, one arm raised to the sky, an olive branch in her lowered hand, crimson drapery streaming out behind her." />
+        </picture>
+      </figure>
+
+      <div class="hero__type">
+        <p class="eyebrow" data-intro="eyebrow">Revue Européenne des Beaux-Arts</p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="line"><span class="line__inner">The Long</span></span>
+          <span class="line"><span class="line__inner">Afternoon</span></span>
+          <span class="line"><span class="line__inner"><em>of Marble</em></span></span>
+        </h1>
+        <p class="hero__lede" data-intro="lede">
+          Issue XIV considers the statue as weather — how drapery, wind and pigment
+          conspire to keep a still figure moving. Six plates, three essays, one column.
+        </p>
+        <p class="hero__actions" data-intro="actions">
+          <a class="button" href="#plates" data-anchor data-cursor-label="Enter">Enter the plates</a>
+          <a class="button button--ghost" href="#contents" data-anchor>Contents</a>
+        </p>
+      </div>
+
+      <p class="hero__scroll" data-intro="scroll" aria-hidden="true"><span>Scroll</span></p>
+    </section>
+
+    <!-- ───────────────────────── EDITORIAL ───────────────────────── -->
+    <section class="sheet editorial" id="editorial" aria-labelledby="editorial-title">
+      <div class="sheet__inner">
+        <p class="eyebrow eyebrow--ink" data-reveal>From the editors</p>
+        <h2 class="section-title" id="editorial-title" data-chars>Nothing here is standing still</h2>
+
+        <div class="editorial__body">
+          <div class="col" data-reveal>
+            <p class="dropcap">
+              A monument is built to refuse the day. It is quarried, squared and set above the
+              street precisely so that nothing in it will move again. And yet the first thing any
+              painter does with a monument is give it weather — a wind from the left, a hem
+              caught mid-lift, a bolt of crimson going out of the frame like a sentence that
+              refuses its own full stop.
+            </p>
+            <p>
+              The frontispiece of this issue is a case in point. The figure is stone; the cloth
+              is not. Between the two the painter has hidden an argument about permanence that
+              the nineteenth century never quite settled, and that we have spent fourteen issues
+              failing to settle either.
+            </p>
+          </div>
+          <div class="col" data-reveal>
+            <p>
+              Our contributors take the question from three directions: the workshop, the
+              archive and the street. Mariana Oreste reads the fluting of the column as a
+              record of labour rather than of order. Jan Verhoeven follows a single pigment —
+              a madder lake, unstable, gorgeous — from Amsterdam to Rome and back.
+            </p>
+            <blockquote class="pull">
+              <p>“Drapery is the part of a statue that has agreed to be mortal.”</p>
+              <cite>— M. Oreste, <span>On Fluting</span></cite>
+            </blockquote>
+            <p>
+              What follows are six plates, taken at close range from the frontispiece. Read them
+              as a printer would: slowly, from the edges inward, with the light behind you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── PLATES ───────────────────────── -->
+    <section class="sheet plates" id="plates" aria-labelledby="plates-title">
+      <div class="sheet__inner">
+        <header class="plates__head">
+          <p class="eyebrow eyebrow--ink" data-reveal>Plates I–VI</p>
+          <h2 class="section-title" id="plates-title" data-chars>Six details, one column</h2>
+          <p class="plates__note" data-reveal>
+            Details from <em>The Column of Victory</em>, oil on linen, 1837, by Auguste
+            Rivière-Belloc. Reproduced at plate size; select any plate for the full note.
+          </p>
+        </header>
+
+        <ul class="plate-grid" id="plate-grid">
+          <li class="plate" data-plate="1">
+            <article>
+              <figure class="plate__frame">
+                <picture>
+                  <source type="image/webp" srcset="/plates/plate-1.webp" />
+                  <img src="/plates/plate-1.jpg" width="640" height="800" loading="lazy" decoding="async"
+                       alt="The laurel-crowned head and raised arm of the marble figure, seen against a deep blue sky." />
+                </picture>
+              </figure>
+              <div class="plate__caption">
+                <p class="plate__num">Plate I</p>
+                <h3 class="plate__title">The Laurel</h3>
+                <p class="plate__meta">Rivière-Belloc · 1837</p>
+              </div>
+              <button class="plate__open" type="button" data-cursor-label="Open">
+                <span class="sr-only">Open Plate I, The Laurel</span>
+              </button>
+            </article>
+          </li>
+
+          <li class="plate" data-plate="2">
+            <article>
+              <figure class="plate__frame">
+                <picture>
+                  <source type="image/webp" srcset="/plates/plate-2.webp" />
+                  <img src="/plates/plate-2.jpg" width="640" height="800" loading="lazy" decoding="async"
+                       alt="The figure's raised hand and outstretched arm, fingers open against the sky." />
+                </picture>
+              </figure>
+              <div class="plate__caption">
+                <p class="plate__num">Plate II</p>
+                <h3 class="plate__title">The Open Hand</h3>
+                <p class="plate__meta">Rivière-Belloc · 1837</p>
+              </div>
+              <button class="plate__open" type="button" data-cursor-label="Open">
+                <span class="sr-only">Open Plate II, The Open Hand</span>
+              </button>
+            </article>
+          </li>
+
+          <li class="plate" data-plate="3">
+            <article>
+              <figure class="plate__frame">
+                <picture>
+                  <source type="image/webp" srcset="/plates/plate-3.webp" />
+                  <img src="/plates/plate-3.jpg" width="640" height="800" loading="lazy" decoding="async"
+                       alt="Crimson drapery billowing away from the figure in heavy folds." />
+                </picture>
+              </figure>
+              <div class="plate__caption">
+                <p class="plate__num">Plate III</p>
+                <h3 class="plate__title">Madder, Streaming</h3>
+                <p class="plate__meta">Rivière-Belloc · 1837</p>
+              </div>
+              <button class="plate__open" type="button" data-cursor-label="Open">
+                <span class="sr-only">Open Plate III, Madder, Streaming</span>
+              </button>
+            </article>
+          </li>
+
+          <li class="plate" data-plate="4">
+            <article>
+              <figure class="plate__frame">
+                <picture>
+                  <source type="image/webp" srcset="/plates/plate-4.webp" />
+                  <img src="/plates/plate-4.jpg" width="640" height="800" loading="lazy" decoding="async"
+                       alt="A gilded olive branch held in the figure's lowered hand, beside the folds of her robe." />
+                </picture>
+              </figure>
+              <div class="plate__caption">
+                <p class="plate__num">Plate IV</p>
+                <h3 class="plate__title">The Olive Branch</h3>
+                <p class="plate__meta">Rivière-Belloc · 1834</p>
+              </div>
+              <button class="plate__open" type="button" data-cursor-label="Open">
+                <span class="sr-only">Open Plate IV, The Olive Branch</span>
+              </button>
+            </article>
+          </li>
+
+          <li class="plate" data-plate="5">
+            <article>
+              <figure class="plate__frame">
+                <picture>
+                  <source type="image/webp" srcset="/plates/plate-5.webp" />
+                  <img src="/plates/plate-5.jpg" width="640" height="800" loading="lazy" decoding="async"
+                       alt="The fluted drum and moulded capital of the column, with the figure's bare feet above it." />
+                </picture>
+              </figure>
+              <div class="plate__caption">
+                <p class="plate__num">Plate V</p>
+                <h3 class="plate__title">Fluting</h3>
+                <p class="plate__meta">Rivière-Belloc · 1837</p>
+              </div>
+              <button class="plate__open" type="button" data-cursor-label="Open">
+                <span class="sr-only">Open Plate V, Fluting</span>
+              </button>
+            </article>
+          </li>
+
+          <li class="plate" data-plate="6">
+            <article>
+              <figure class="plate__frame">
+                <picture>
+                  <source type="image/webp" srcset="/plates/plate-6.webp" />
+                  <img src="/plates/plate-6.jpg" width="640" height="800" loading="lazy" decoding="async"
+                       alt="The hem of the robe and the last of the crimson cloth falling past the capital of the column." />
+                </picture>
+              </figure>
+              <div class="plate__caption">
+                <p class="plate__num">Plate VI</p>
+                <h3 class="plate__title">The Hem</h3>
+                <p class="plate__meta">Rivière-Belloc · 1837</p>
+              </div>
+              <button class="plate__open" type="button" data-cursor-label="Open">
+                <span class="sr-only">Open Plate VI, The Hem</span>
+              </button>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── CONTENTS ───────────────────────── -->
+    <section class="contents" id="contents" aria-labelledby="contents-title">
+      <!-- decorative: the bound branch, scrolling with the section -->
+      <div class="branch" aria-hidden="true">
+        <picture>
+          <source type="image/webp" media="(max-width: 640px)" srcset="/branch-sm.webp" />
+          <source type="image/webp" srcset="/branch.webp" />
+          <img src="/branch.png" width="900" height="1168" loading="lazy" decoding="async" alt="" />
+        </picture>
+      </div>
+
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>In this issue</p>
+        <h2 class="section-title section-title--light" id="contents-title" data-chars>Contents</h2>
+
+        <ol class="toc">
+          <li data-reveal>
+            <span class="toc__num">I</span>
+            <span class="toc__body">
+              <h3>On Fluting: the column as a record of labour</h3>
+              <p>Mariana Oreste</p>
+            </span>
+            <span class="toc__page">14</span>
+          </li>
+          <li data-reveal>
+            <span class="toc__num">II</span>
+            <span class="toc__body">
+              <h3>A madder lake, from Amsterdam to Rome</h3>
+              <p>Jan Verhoeven</p>
+            </span>
+            <span class="toc__page">31</span>
+          </li>
+          <li data-reveal>
+            <span class="toc__num">III</span>
+            <span class="toc__body">
+              <h3>Weather for statues: nineteenth-century wind</h3>
+              <p>Céline Marchetti</p>
+            </span>
+            <span class="toc__page">48</span>
+          </li>
+          <li data-reveal>
+            <span class="toc__num">IV</span>
+            <span class="toc__body">
+              <h3>Six plates, annotated</h3>
+              <p>The editors</p>
+            </span>
+            <span class="toc__page">63</span>
+          </li>
+          <li data-reveal>
+            <span class="toc__num">V</span>
+            <span class="toc__body">
+              <h3>Correspondence, and a correction concerning gold</h3>
+              <p>Readers</p>
+            </span>
+            <span class="toc__page">79</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <!-- ───────────────────────── COLOPHON ───────────────────────── -->
+  <footer class="colophon" id="colophon">
+    <div class="wrap">
+      <div class="colophon__grid">
+        <div>
+          <p class="colophon__logo">ANTIQVA</p>
+          <p class="colophon__line">Revue Européenne des Beaux-Arts, published four times a year in Paris, Vienna and Rome since MCMLXXXI.</p>
+        </div>
+        <div>
+          <h2 class="colophon__head">Subscribe</h2>
+          <p class="colophon__line">Four issues, delivered flat, with the annual plate portfolio.</p>
+          <form class="subscribe" novalidate>
+            <label class="sr-only" for="email">Email address</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required />
+            <button type="submit" data-cursor-label="Send">Join</button>
+            <p class="subscribe__msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <div>
+          <h2 class="colophon__head">Colophon</h2>
+          <p class="colophon__line">
+            Set in Playfair Display and Inter. Frontispiece and plates after
+            <em>The Column of Victory</em>. Printed on laid cream; reproduced here
+            in cerulean, madder and gold.
+          </p>
+        </div>
+      </div>
+      <p class="colophon__rule" aria-hidden="true"></p>
+      <p class="colophon__fine">
+        <span>© MMXXVI ANTIQVA</span>
+        <span>Issue XIV — The Long Afternoon of Marble</span>
+        <span>A demonstration prospectus; the review, its writers and the painting are invented.</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ───────────────────────── PLATE DETAIL ───────────────────────── -->
+  <div class="detail" id="detail" hidden>
+    <div class="detail__scrim" data-detail-close></div>
+    <div class="detail__panel" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+      <button class="detail__close" type="button" data-detail-close data-cursor-label="Close">
+        <span aria-hidden="true">✕</span><span class="sr-only">Close plate</span>
+      </button>
+      <figure class="detail__figure">
+        <img id="detail-img" src="" alt="" decoding="async" />
+      </figure>
+      <div class="detail__body">
+        <p class="detail__num" id="detail-num"></p>
+        <h2 class="detail__title" id="detail-title"></h2>
+        <p class="detail__meta" id="detail-meta"></p>
+        <p class="detail__note" id="detail-note"></p>
+        <dl class="detail__facts" id="detail-facts"></dl>
+      </div>
+    </div>
+  </div>
+
+  <!-- gallery WebGL layer (desktop only; created by script) -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
