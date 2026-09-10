@@ -527,8 +527,72 @@ a { color: inherit; }
 .toc__body p { margin: 0; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.66; }
 .toc__page { font-size: 0.78rem; letter-spacing: 0.16em; opacity: 0.6; font-variant-numeric: tabular-nums; }
 
+/* ── offset-print misregistration ───────────────────────────
+   Put `misprint` on any element that wraps a single image and give it a
+   --misprint-src. Two faint colour-shifted plates sit under the sharp
+   original, nudged in opposite diagonals and masked to the perimeter, so the
+   middle of the picture stays perfectly clean.
+
+     <figure class="misprint" style="--misprint-src: url('/photo.webp')">
+       <img src="/photo.webp" alt="…">
+     </figure>
+
+   Only elements carrying the class are touched; everything is per-instance
+   tunable through the custom properties below.
+   ------------------------------------------------------------------- */
+.misprint {
+  --misprint-src: none;         /* the same file the <img> is showing */
+  --misprint-strength: 1;       /* intensity: 0 is off, 1 is the house setting */
+  --misprint-shift: 1.5px;      /* plate offset — keep it between 1 and 2px */
+  --misprint-clean: 70%;        /* the inner share of the image left untouched */
+  --misprint-cyan: #1FB0C4;
+  --misprint-red: #C8452F;
+  position: relative;
+}
+
+/* the sharp original stays on top of its own ghosts */
+.misprint > * { position: relative; z-index: 1; }
+
+.misprint::before,
+.misprint::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--misprint-ink);
+  opacity: calc(0.2 * var(--misprint-strength));
+  mix-blend-mode: multiply;     /* where the two plates overlap, ink darkens */
+
+  /* the image's own alpha, intersected with a ring that fades to nothing
+     across the inner --misprint-clean of the frame */
+  -webkit-mask-image: var(--misprint-src),
+    radial-gradient(farthest-side at 50% 50%, transparent var(--misprint-clean), #000 100%);
+  -webkit-mask-size: 100% 100%, 100% 100%;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-image: var(--misprint-src),
+    radial-gradient(farthest-side at 50% 50%, transparent var(--misprint-clean), #000 100%);
+  mask-size: 100% 100%, 100% 100%;
+  mask-repeat: no-repeat, no-repeat;
+  mask-composite: intersect;
+}
+
+.misprint::before {                                    /* cyan plate, up and left */
+  --misprint-ink: var(--misprint-cyan);
+  transform: translate(calc(-1 * var(--misprint-shift)), calc(-1 * var(--misprint-shift)));
+}
+
+.misprint::after {                                     /* warm red plate, down and right */
+  --misprint-ink: var(--misprint-red);
+  transform: translate(var(--misprint-shift), var(--misprint-shift));
+}
+
 /* ── the bound branch in the contents ──────────────────── */
 .branch {
+  --misprint-src: url("/branch.webp");
+  --misprint-strength: 1.1;
+  --misprint-shift: 1.5px;
   position: absolute;
   top: clamp(-3rem, -2vw, 0rem);
   right: clamp(-7rem, -5vw, -1rem);
@@ -748,6 +812,10 @@ a { color: inherit; }
   /* cheaper overlays on small screens: no full-screen blending */
   .treatment--grain { mix-blend-mode: normal; opacity: 0.07; }
   .treatment--halftone { display: none; }
+}
+
+@media (max-width: 640px) {
+  .branch { --misprint-src: url("/branch-sm.webp"); }
 }
 
 @media (max-width: 560px) {
