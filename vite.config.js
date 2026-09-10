@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // served from https://buildwclaude.github.io/antiqva/ once built; plain / in dev
+  base: command === 'build' ? '/antiqva/' : '/',
   server: { host: true, port: 5173 },
   build: {
     target: 'es2020',
@@ -12,4 +14,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

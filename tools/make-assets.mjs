@@ -111,6 +111,15 @@ ff([...cutB, '-vf', 'scale=900:-1:flags=lanczos', '-frames:v', '1', `${OUT}/bran
 ff([...cutB, '-vf', 'scale=900:-1:flags=lanczos', '-c:v', 'libwebp', '-q:v', '86', `${OUT}/branch.webp`]);
 ff([...cutB, '-vf', 'scale=440:-1:flags=lanczos', '-c:v', 'libwebp', '-q:v', '82', `${OUT}/branch-sm.webp`]);
 
+/* ── the tab icon: the leafy head of the branch, which is what survives at 32px ── */
+const ICON = { x: 500, y: 60, w: 560, h: 620 };
+const cutIcon = crop(branch, [ICON.x, ICON.y, ICON.w, ICON.h], 'icon');
+const fit = (px) => `format=rgba,scale=w=${px}:h=${px}:force_original_aspect_ratio=decrease:flags=lanczos,` +
+  `pad=${px}:${px}:(ow-iw)/2:(oh-ih)/2:color=#00000000,eq=saturation=1.18:contrast=1.08`;
+[[32, 'favicon-32.png'], [48, 'favicon-48.png'], [180, 'apple-touch-icon.png']].forEach(([px, name]) => {
+  ff([...cutIcon, '-vf', fit(px), '-frames:v', '1', `${OUT}/${name}`]);
+});
+
 /* ── the six plates (from the untouched painting) ──────── */
 const PLATES = [
   [360, 450, 355, 20], [340, 425, 545, 0], [340, 425, 560, 180],

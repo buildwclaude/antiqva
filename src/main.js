@@ -22,6 +22,10 @@ let gallery = null;
 boot();
 
 function boot() {
+  // the browser and ScrollTrigger both like to restore the old scroll position
+  if (!location.hash) window.scrollTo(0, 0);
+  ScrollTrigger.clearScrollMemory('manual');
+
   initScroll();
 
   /* ── the sky, behind the whole page ── */
@@ -90,6 +94,7 @@ function startIntro() {
     ScrollTrigger.refresh();
   });
 
+  if (!location.hash) window.scrollTo(0, 0);   // once more, after layout has settled
   if (!img || img.complete) { go(); return; }
   let done = false;
   const once = () => { if (!done) { done = true; go(); } };
